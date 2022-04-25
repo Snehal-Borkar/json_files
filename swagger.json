@@ -12,7 +12,7 @@
         "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
       }
     },
-    "host": "localhost:5000",
+    "host": "fyn537f9lc.execute-api.ap-south-1.amazonaws.com",
     "tags": [
       {
         "name": "api",
@@ -20,7 +20,7 @@
       }
     ],
     "schemes": [
-      "http"
+      "https"
     ],
     "paths": {
       "/api/{table}": {
