@@ -1,0 +1,536 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a sample server used for uploading csv file to server and performing CRUD operation on it",
+      "version": "1.0.0",
+      "title": "CRUD on CSV Uploader app",
+      "contact": {
+        "email": "borkarsnehal60@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "localhost:5000",
+    "tags": [
+      {
+        "name": "api",
+        "description": "Uploading csv to database and CRUD on it"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/api/{table}": {
+        "get": {
+          "tags": [
+            "api"
+          ],
+          "summary": "get all objects",
+          "description": "Get all objects from csv table",
+          "operationId": "getcsv_json",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "table",
+              "in": "path",
+              "description": "Table name of the database from which object to fetch",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid table value"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "api"
+          ],
+          "summary": "delete objects",
+          "description": "Get all objects from csv table",
+          "operationId": "delete object",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "table",
+              "in": "path",
+              "description": "Table name of the database from which object to fetch",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Pet object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/delete_id"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid table value"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "api"
+          ],
+          "summary": "objects",
+          "description": "Get all objects from csv table",
+          "operationId": "post object",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "table",
+              "in": "path",
+              "description": "Table name of the database from which object to fetch",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Pet object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/object_info"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid table value"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "api"
+          ],
+          "summary": "objects",
+          "description": "Get all objects from csv table",
+          "operationId": "put object",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "table",
+              "in": "path",
+              "description": "Table name of the database from which object to fetch",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Pet object that needs to be added to the store",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/object_info"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid table value"
+            }
+          }
+        }
+      },
+      "/api/{table}/{objectID}": {
+        "patch": {
+          "tags": [
+            "api"
+          ],
+          "summary": "delete objects",
+          "description": "Get all objects from csv table",
+          "operationId": "update object id ",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "table",
+              "in": "path",
+              "description": "Table name of the database from which object to fetch",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "objectID",
+              "in": "path",
+              "description": "Updated name of the pet",
+              "required": true,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "accessionYear",
+              "in": "formData",
+              "description": "Updated name of the pet",
+              "required": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "primaryImage",
+              "in": "formData",
+              "description": "Updated status of the pet",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid table value"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "delete_id": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "object_info": {
+        "type": "object",
+        "properties": {
+          "objectID": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "isHighlight": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "accessionNumber": {
+            "type": "string",
+            "example": "1979.486.1"
+          },
+          "accessionYear": {
+            "type": "integer",
+            "format": "int64",
+            "example": 2
+          },
+          "isPublicDomain": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "primaryImage": {
+            "type": "string",
+            "example": "image link"
+          },
+          "primaryImageSmall": {
+            "type": "string",
+            "example": ""
+          },
+          "additionalImages": {
+            "type": "string",
+            "example": "[]"
+          },
+          "constituents_0_constituentID": {
+            "type": "string",
+            "example": "164292.0"
+          },
+          "constituents_0_role": {
+            "type": "string",
+            "example": "Maker"
+          },
+          "constituents_0_name": {
+            "type": "string",
+            "example": "James Barton Longacre"
+          },
+          "constituents_0_constituentULAN_URL": {
+            "type": "string",
+            "example": "http://vocab.getty.edu/page/ulan/500011409"
+          },
+          "constituents_0_constituentWikidata_URL": {
+            "type": "string",
+            "example": "https://www.wikidata.org/wiki/Q3806459"
+          },
+          "constituents_0_gender": {
+            "type": "string",
+            "example": ""
+          },
+          "department": {
+            "type": "string",
+            "example": "The American Wing"
+          },
+          "objectName": {
+            "type": "string",
+            "example": "Coin"
+          },
+          "title": {
+            "type": "string",
+            "example": "One-dollar Liberty Head Coin"
+          },
+          "culture": {
+            "type": "string",
+            "example": ""
+          },
+          "period": {
+            "type": "string",
+            "example": ""
+          },
+          "dynasty": {
+            "type": "string",
+            "example": ""
+          },
+          "reign": {
+            "type": "string",
+            "example": ""
+          },
+          "portfolio": {
+            "type": "string",
+            "example": ""
+          },
+          "artistRole": {
+            "type": "string",
+            "example": "Maker"
+          },
+          "artistPrefix": {
+            "type": "string",
+            "example": ""
+          },
+          "artistDisplayName": {
+            "type": "string",
+            "example": "James Barton Longacre"
+          },
+          "artistDisplayBio": {
+            "type": "string",
+            "example": "American, Delaware County, Pennsylvania 1794–1869 Philadelphia, Pennsylvania"
+          },
+          "artistSuffix": {
+            "type": "string",
+            "example": ""
+          },
+          "artistAlphaSort": {
+            "type": "string",
+            "example": "Longacre, James Barton"
+          },
+          "artistNationality": {
+            "type": "string",
+            "example": "American"
+          },
+          "artistBeginDate": {
+            "type": "string",
+            "example": "1869"
+          },
+          "artistEndDate": {
+            "type": "string",
+            "example": "1869"
+          },
+          "artistGender": {
+            "type": "string",
+            "example": ""
+          },
+          "artistWikidata_URL": {
+            "type": "string",
+            "example": "https://www.wikidata.org/wiki/Q3806459"
+          },
+          "artistULAN_URL": {
+            "type": "string",
+            "example": "http://vocab.getty.edu/page/ulan/500011409"
+          },
+          "objectDate": {
+            "type": "string",
+            "example": "1853"
+          },
+          "objectBeginDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "objectEndDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "medium": {
+            "type": "string",
+            "example": "1853"
+          },
+          "dimensions": {
+            "type": "string",
+            "example": "Dimensions unavailable"
+          },
+          "measurements": {
+            "type": "string",
+            "example": ""
+          },
+          "creditLine": {
+            "type": "string",
+            "example": "Gift of Heinz L. Stoppelmann, 1979"
+          },
+          "geographyType": {
+            "type": "string",
+            "example": ""
+          },
+          "city": {
+            "type": "string",
+            "example": ""
+          },
+          "state": {
+            "type": "string",
+            "example": ""
+          },
+          "county": {
+            "type": "string",
+            "example": ""
+          },
+          "country": {
+            "type": "string",
+            "example": ""
+          },
+          "region": {
+            "type": "string",
+            "example": ""
+          },
+          "subregion": {
+            "type": "string",
+            "example": ""
+          },
+          "locale": {
+            "type": "string",
+            "example": ""
+          },
+          "locus": {
+            "type": "string",
+            "example": ""
+          },
+          "excavation": {
+            "type": "string",
+            "example": ""
+          },
+          "river": {
+            "type": "string",
+            "example": ""
+          },
+          "classification": {
+            "type": "string",
+            "example": ""
+          },
+          "rightsAndReproduction": {
+            "type": "string",
+            "example": ""
+          },
+          "linkResource": {
+            "type": "string",
+            "example": ""
+          },
+          "metadataDate": {
+            "type": "string",
+            "example": "2021-04-06T04:41:04.967Z"
+          },
+          "repository": {
+            "type": "string",
+            "example": "Metropolitan Museum of Art, New York, NY"
+          },
+          "objectURL": {
+            "type": "string",
+            "example": "https://www.metmuseum.org/art/collection/search/1"
+          },
+          "tags": {
+            "type": "string",
+            "example": ""
+          },
+          "objectWikidata_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "isTimelineWork": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "GalleryNumber": {
+            "type": "string",
+            "example": ""
+          },
+          "constituents": {
+            "type": "string",
+            "example": ""
+          },
+          "measurements_0_elementName": {
+            "type": "string",
+            "example": ""
+          },
+          "measurements_0_elementDescription": {
+            "type": "string",
+            "example": ""
+          },
+          "measurements_0_elementMeasurements_Diameter": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_0_term": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_0_AAT_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_0_Wikidata_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_1_term": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_1_AAT_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_1_Wikidata_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_2_term": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_2_AAT_URL": {
+            "type": "string",
+            "example": ""
+          },
+          "tags_2_Wikidata_URL": {
+            "type": "string",
+            "example": ""
+          }
+        }
+      }
+    }
+  } 
