@@ -20,7 +20,8 @@
       }
     ],
     "schemes": [
-      "https"
+      "https",
+      "http"
     ],
     "paths": {
       "/api/{table}": {
